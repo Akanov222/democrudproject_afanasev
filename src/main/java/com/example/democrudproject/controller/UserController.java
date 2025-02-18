@@ -2,12 +2,12 @@ package com.example.democrudproject.controller;
 
 import com.example.democrudproject.repository.User;
 import com.example.democrudproject.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "api/users")
 public class UserController {
 
     private final UserService userService;
@@ -17,7 +17,12 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> helloWorld() {
-        return userService.helloWorld();
+    public List<User> findAll() {
+        return userService.findAll();
+    }
+
+    @PostMapping
+    public User create(@RequestBody User user){
+        return userService.create(user);
     }
 }
